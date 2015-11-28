@@ -193,7 +193,7 @@ if (NOT ${U_CMAKE_BUILD_TYPE} MATCHES DEBUG AND NANOGUI_BUILD_SHARED)
     set_property(TARGET nanogui APPEND_STRING PROPERTY COMPILE_FLAGS "/GL ")
   elseif ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
     set_property(TARGET nanogui APPEND_STRING PROPERTY COMPILE_FLAGS "-fvisibility=hidden ")
-    set_property(TARGET nanogui APPEND_STRING PROPERTY COMPILE_FLAGS "-flto ")
+    #set_property(TARGET nanogui APPEND_STRING PROPERTY COMPILE_FLAGS "-flto ")
   endif()
 endif()
 
