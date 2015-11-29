@@ -141,6 +141,7 @@ protected:
     Vector3f mBackground;
     std::string mCaption;
     bool mShutdownGLFWOnDestruct;
+    Vector2f mGlobalScale;
 };
 
 NAMESPACE_END(nanogui)

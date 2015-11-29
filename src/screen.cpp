@@ -33,14 +33,18 @@ static bool glewInitialized = false;
 
 Screen::Screen()
     : Widget(nullptr), mGLFWWindow(nullptr), mNVGContext(nullptr),
-      mCursor(Cursor::Arrow), mShutdownGLFWOnDestruct(false) {
+      mCursor(Cursor::Arrow), mShutdownGLFWOnDestruct(false),
+      mGlobalScale(1.5f, 1.5f)    
+{
     memset(mCursors, 0, sizeof(GLFWcursor *) * (int) Cursor::CursorCount);
 }
 
 Screen::Screen(const Vector2i &size, const std::string &caption,
                bool resizable, bool fullscreen)
     : Widget(nullptr), mGLFWWindow(nullptr), mNVGContext(nullptr),
-      mCursor(Cursor::Arrow), mCaption(caption), mShutdownGLFWOnDestruct(false) {
+      mCursor(Cursor::Arrow), mCaption(caption), mShutdownGLFWOnDestruct(false) ,
+      mGlobalScale(1.5f, 1.5f) 
+{
     memset(mCursors, 0, sizeof(GLFWcursor *) * (int) Cursor::CursorCount);
 
     /* Request a forward compatible OpenGL 3.3 core profile context */
@@ -262,6 +266,7 @@ void Screen::drawAll() {
     glClearColor(mBackground[0], mBackground[1], mBackground[2], 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
+     
     drawContents();
     drawWidgets();
 
@@ -281,6 +286,8 @@ void Screen::drawWidgets() {
     mPixelRatio = (float) mFBSize[0] / (float) mSize[0];
     nvgBeginFrame(mNVGContext, mSize[0], mSize[1], mPixelRatio);
 
+    nvgScale(mNVGContext, mGlobalScale[0], mGlobalScale[1] );
+    
     draw(mNVGContext);
 
     double elapsed = glfwGetTime() - mLastInteraction;
@@ -347,8 +354,10 @@ bool Screen::keyboardCharacterEvent(unsigned int codepoint) {
     return false;
 }
 
-bool Screen::cursorPosCallbackEvent(double x, double y) {
-    Vector2i p((int) x, (int) y);
+bool Screen::cursorPosCallbackEvent(double x, double y) 
+{
+    Vector2i p((int) x/mGlobalScale[0], (int) y/mGlobalScale[1]);
+    
     bool ret = false;
     mLastInteraction = glfwGetTime();
     try {
