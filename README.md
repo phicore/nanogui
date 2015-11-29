@@ -141,7 +141,7 @@ $ apt-get install python-dev
 - Compiles with TDM-GCC 
 - Global scaling like shown below
 
-![Screenshot](https://github.com/phicore/nanogui/raw/Cm-Changes/resources/screenshot-scaling15.png "Screenshot")
+![Screenshot](https://github.com/phicore/nanogui/raw/Cm-Changes/resources/screenshot-scale15.png "Screenshot")
 
 
 
