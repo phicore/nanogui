@@ -135,3 +135,13 @@ To also get the Python bindings, you'll need to run
 ```bash
 $ apt-get install python-dev
 ```
+
+## PhiCore Changes
+
+- Compiles with TDM-GCC 
+- Global scaling like shown below
+
+![Screenshot](https://github.com/phicore/nanogui/raw/Cm-Changes/resources/screenshot-scaling15.png "Screenshot")
+
+
+
