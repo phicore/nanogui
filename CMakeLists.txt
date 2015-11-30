@@ -191,16 +191,11 @@ if (NOT ${U_CMAKE_BUILD_TYPE} MATCHES DEBUG AND NANOGUI_BUILD_SHARED)
     set_property(TARGET nanogui APPEND_STRING PROPERTY COMPILE_FLAGS "/GL ")
   elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     set_property(TARGET nanogui APPEND_STRING PROPERTY COMPILE_FLAGS "-fvisibility=hidden ")
-<<<<<<< HEAD
-    #set_property(TARGET nanogui APPEND_STRING PROPERTY COMPILE_FLAGS "-flto ")
-=======
-
     # Check for Link Time Optimization support
     CHECK_CXX_COMPILER_FLAG("-flto" HAS_LTO_FLAG)
     if (HAS_LTO_FLAG)
       set_property(TARGET nanogui APPEND_STRING PROPERTY COMPILE_FLAGS "-flto ")
     endif()
->>>>>>> refs/remotes/wjakob/master
   endif()
 endif()
 
